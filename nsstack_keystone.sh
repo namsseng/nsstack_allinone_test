@@ -1471,6 +1471,8 @@ keystone service-create --name=cinderv2 --type=volumev2 --description="OpenStack
 keystone endpoint-create --service-id=$(keystone service-list | awk '/ volumev2 / {print $2}') --publicurl'=http://'"$hostname"':8776/v2/$(tenant_id)s' --internalurl='http://'"$hostname"':8776/v2/$(tenant_id)s' --adminurl='http://'"$hostname"':8776/v2/$(tenant_id)s'
 
 # ceilometer
+keystone user-create --name=ceilometer --pass="$password" --email="$email"
+keystone user-role-add --user=ceilometer --tenant=service --role=admin
 keystone role-create --name=ResellerAdmin
 keystone user-role-add --tenant=service --user=ceilometer --role=ResellerAdmin
 keystone service-create --name=ceilometer --type=metering --description="Telemetry"
