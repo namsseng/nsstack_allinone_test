@@ -1466,12 +1466,12 @@ keystone endpoint-create --service-id=$(keystone service-list | awk '/ network /
 keystone user-create --name=cinder --pass="$password" --email="$email"
 keystone user-role-add --tenant=service --user=cinder --role=admin
 keystone service-create --name=cinder --type=volume --description="OpenStack Block Storage"
-$ keystone endpoint-create --service-id=$(keystone service-list | awk '/ volume / {print $2}') --publicurl'=http://'"$hostname"':8776/v1/$(tenant_id)s' --internalurl='http://'"$hostname"':8776/v1/$(tenant_id)s' --adminurl='http://'"$hostname"':8776/v1/$(tenant_id)s'
+keystone endpoint-create --service-id=$(keystone service-list | awk '/ volume / {print $2}') --publicurl'=http://'"$hostname"':8776/v1/$(tenant_id)s' --internalurl='http://'"$hostname"':8776/v1/$(tenant_id)s' --adminurl='http://'"$hostname"':8776/v1/$(tenant_id)s'
 keystone service-create --name=cinderv2 --type=volumev2 --description="OpenStack Block Storage v2"
-$ keystone endpoint-create --service-id=$(keystone service-list | awk '/ volumev2 / {print $2}') --publicurl'=http://'"$hostname"':8776/v2/$(tenant_id)s' --internalurl='http://'"$hostname"':8776/v2/$(tenant_id)s' --adminurl='http://'"$hostname"':8776/v2/$(tenant_id)s'
+keystone endpoint-create --service-id=$(keystone service-list | awk '/ volumev2 / {print $2}') --publicurl'=http://'"$hostname"':8776/v2/$(tenant_id)s' --internalurl='http://'"$hostname"':8776/v2/$(tenant_id)s' --adminurl='http://'"$hostname"':8776/v2/$(tenant_id)s'
 
 # ceilometer
 keystone role-create --name=ResellerAdmin
 keystone user-role-add --tenant=service --user=ceilometer --role=ResellerAdmin
 keystone service-create --name=ceilometer --type=metering --description="Telemetry"
-$ keystone endpoint-create --service-id=$(keystone service-list | awk '/ metering / {print $2}') --publicurl='http://'"$hostname"':8777' --internalurl='http://'"$hostname"':8777' --adminurl='http://'"$hostname"':8777'
+keystone endpoint-create --service-id=$(keystone service-list | awk '/ metering / {print $2}') --publicurl='http://'"$hostname"':8777' --internalurl='http://'"$hostname"':8777' --adminurl='http://'"$hostname"':8777'

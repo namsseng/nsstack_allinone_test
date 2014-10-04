@@ -240,7 +240,7 @@ auth_strategy=keystone
 
 # If an instance is passed with the log message, format it
 # like this (string value)
-#instance_format="[instance: %(uuid)s] "
+#instance_format="[instance: \%(uuid)s] "
 
 # If an instance UUID is passed with the log message, format
 # it like this (string value)

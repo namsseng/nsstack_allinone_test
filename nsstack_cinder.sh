@@ -77,7 +77,7 @@ losetup /dev/loop2 /cinder-volumes
 echo "losetup /dev/loop2 /cinder-volumes; exit 0;" > /etc/init.d/cinder-setup-backing-file
 chmod 755 /etc/init.d/cinder-setup-backing-file
 ln -s /etc/init.d/cinder-setup-backing-file /etc/rc2.d/S10cinder-setup-backing-file
-
+source ./admin_openrc.sh
 # create the physical volume and volume group
 sudo pvcreate /dev/loop2
 sudo vgcreate cinder-volumes /dev/loop2
