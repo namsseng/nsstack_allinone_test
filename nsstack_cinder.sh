@@ -19,7 +19,7 @@ apt-get install -y cinder-api cinder-scheduler cinder-volume
 
 
 
-su -s /bin/sh -c "cinder-manage db sync" cinder
+
 
 echo "
 [DEFAULT]
@@ -33,7 +33,7 @@ auth_strategy = keystone
 state_path = /var/lib/cinder
 lock_path = /var/lock/cinder
 volumes_dir = /var/lib/cinder/volumes
-connection = mysql://cinder:$password@$hohostname/cinder
+connection = mysql://cinder:$password@$hostname/cinder
 rpc_backend = rabbit
 rabbit_host = $hostname
 rabbit_port = 5672
@@ -72,6 +72,8 @@ echo;
 
 # loop the file up
 losetup /dev/loop2 /cinder-volumes
+
+su -s /bin/sh -c "cinder-manage db sync" cinder
 
 # create a rebootable remount of the file
 echo "losetup /dev/loop2 /cinder-volumes; exit 0;" > /etc/init.d/cinder-setup-backing-file
