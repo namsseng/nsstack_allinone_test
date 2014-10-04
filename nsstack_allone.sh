@@ -13,12 +13,11 @@ managementip=$OS_SERVICE_IP
 hostname=$OS_HOST_NAME
 
 
-ed -e "
-/^127.0.1.1 .*$/s/^.*$//
-" -i /etc/hosts
 echo "
+localhost			127.0.0.1
 $managementip		$hostname
-" >> /etc/hosts
+" > /etc/hosts
+
 ./nsstack_ntp.sh
 
 sleep 2
