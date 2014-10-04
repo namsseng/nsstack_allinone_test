@@ -14,8 +14,8 @@ hostname=$OS_HOST_NAME
 
 
 echo "
-localhost			127.0.0.1
-$managementip		$hostname
+127.0.0.1			localhost
+$managementip			$hostname
 " > /etc/hosts
 
 ./nsstack_ntp.sh
