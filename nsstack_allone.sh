@@ -6,6 +6,19 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
+. ./nsstack_setuprc
+
+password=$OS_PASSWORD    
+managementip=$OS_SERVICE_IP
+hostname=$OS_HOST_NAME
+
+
+ed -e "
+/^127.0.1.1 .*$/s/^.*$//
+" -i /etc/hosts
+echo "
+$managementip		$hostname
+" >> /etc/hosts
 ./nsstack_ntp.sh
 
 sleep 2

@@ -54,7 +54,7 @@ auth_protocol = http
 admin_tenant_name = service
 admin_user = cinder
 admin_password = $password
-" >> /etc/cinder/cinder.conf
+" > /etc/cinder/cinder.conf
 
 service cinder-scheduler restart
 service cinder-api restart
