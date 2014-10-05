@@ -8,7 +8,9 @@ fi
 . ./nsstack_setuprc
 managementip=$OS_SERVICE_IP
 rignic=$OS_SERVICE_NIC
-
+ext_gateway=$OS_EXTERNAL_GATEWAY
+ext_area=$OS_EXTERNAL_AREA
+ext_dns=$OS_EXTERNAL_DNS
 
 source ./admin_openrc.sh
 
