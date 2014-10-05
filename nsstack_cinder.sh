@@ -38,7 +38,7 @@ rpc_backend = rabbit
 rabbit_host = $hostname
 rabbit_port = 5672
 rabbit_userid = guest
-rabbit_password = 1
+rabbit_password = $password
 glace_host = $hostname
 control_exchange = cinder
 notification_driver = cinder.openstack.common.notifier.rpc_notifier
@@ -79,13 +79,14 @@ su -s /bin/sh -c "cinder-manage db sync" cinder
 echo "losetup /dev/loop2 /cinder-volumes; exit 0;" > /etc/init.d/cinder-setup-backing-file
 chmod 755 /etc/init.d/cinder-setup-backing-file
 ln -s /etc/init.d/cinder-setup-backing-file /etc/rc2.d/S10cinder-setup-backing-file
-source ./admin_openrc.sh
+
 # create the physical volume and volume group
 sudo pvcreate /dev/loop2
 sudo vgcreate cinder-volumes /dev/loop2
 
 # create storage type
 sleep 2
+source ./admin_openrc.sh
 cinder type-create Storage
 
 # restart cinder services

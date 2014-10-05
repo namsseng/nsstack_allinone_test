@@ -55,6 +55,11 @@ sleep 2
 sleep 2
 
 ./nsstack_ceilometer.sh
+sleep 2
 
+./nsstack_networking.sh
+
+
+echo "NSSTACK setup complate"
 
 reboot

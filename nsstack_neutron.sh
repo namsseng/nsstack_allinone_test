@@ -774,31 +774,3 @@ neutron subnet-create demo-net --name demo-subnet --gateway $int_gateway $int_ar
 neutron router-create demo-router
 neutron router-interface-add demo-router demo-subnet
 neutron router-gateway-set demo-router ext-net
-
-ovs-vsctl add-br br-ex
-ovs-vsctl add-port br-ex $rignic
-
-echo "
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
-
-# The loopback network interface
-auto lo
-iface lo inet loopback
-
-auto br-ex
-iface br-ex inet static
-        address         $managementip
-        netmask         255.255.255.0
-        gateway         $ext_gateway
-        up ifconfig \$IFACE promisc
-        dns-nameservers $ext_dns
-
-auto $rignic
-iface $rignic inet manual
-        up ip address add 0/0 dev \$IFACE
-        up ip link set \$IFACE up
-        up ifconfig \$IFACE multicast
-        down ip link set \$IFACE down
-
-" > /etc/network/interfaces
