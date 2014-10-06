@@ -166,7 +166,7 @@ mysql_secure_installation
 
 
 mysql -u root -p <<EOF
-CREATE DATABASE nova;vi
+CREATE DATABASE nova;
 GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' IDENTIFIED BY '$service_pass';
 GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' IDENTIFIED BY '$service_pass';
 CREATE DATABASE glance;
