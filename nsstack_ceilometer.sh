@@ -21,6 +21,7 @@ sed -e "
 " -i /etc/mongodb.conf
 
 service mongodb restart
+sleep 5
 
 mongo --host $hostname --eval '
 db = db.getSiblingDB("ceilometer");

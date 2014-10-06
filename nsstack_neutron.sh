@@ -766,6 +766,7 @@ sleep 4
 source admin_openrc.sh
 neutron net-create ext-net --shared --router:external=True
 neutron subnet-create ext-net --name ext-subnet --allocation-pool start=$ext_start,end=$ext_end --disable-dhcp --gateway $ext_gateway $ext_area
+sleep 4
 
 source demo_openrc.sh
 neutron net-create demo-net

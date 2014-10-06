@@ -30,7 +30,7 @@ sed -e "
 /^sqlite_db =.*$/s/^.*$/connection = mysql:\/\/glance:$password@$hostname\/glance/
 /^# notifier_strategy =.*$/s/^.*$/notifier_strategy = messaging/
 /^rabbit_host =.*$/s/^.*$/rabbit_host = $hostname/
-/^rabbit_password =.*$/s/^.*$/rabbit_host = $password/
+/^rabbit_password =.*$/s/^.*$/rabbit_password = $password/
 /rabbit_use_ssl = false/a rpc_backend = rabbit
 /\[paste_deploy\]/a flavor = keystone
 /\[keystone_authtoken\]/a auth_uri = http://$hostname:5000
