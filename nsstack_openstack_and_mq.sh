@@ -9,6 +9,7 @@ fi
 service_pass=$OS_PASSWORD
 # Install the Ubuntu Cloud Archive for Icehouse: 
 apt-get install -y python-software-properties
+apt-get install - y software-properties-common
 add-apt-repository cloud-archive:icehouse
 
 # Update the package database and upgrade your system:
