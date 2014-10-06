@@ -97,7 +97,7 @@ os_password = $password
 
 " > /etc/ceilometer/ceilometer.conf
 
-ceiloneter-dbsync
+ceilometer-dbsync
 
 service ceilometer-agent-central restart
 service ceilometer-agent-notification restart
