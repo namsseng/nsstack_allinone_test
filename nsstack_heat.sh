@@ -13,9 +13,9 @@ hostname=$OS_HOST_NAME
 
 
 
-apt-get install heat-api heat-api-cfn heat-engine
+apt-get install -y heat-api heat-api-cfn heat-engine
 
-su -s /bin/sh -c "heat-manage db_sync" heat
+
 
 sleep 5
 
@@ -31,6 +31,8 @@ sed -e "
 /^#heat_waitcondition_server_url=.*$/s/^.*$/heat_waitcondition_server_url=http:\/\/$managementip:8000\/v1\/waitcondition/
 " -i /etc/heat/heat.conf
 
+su -s /bin/sh -c "heat-manage db_sync" heat
+
 
 service heat-api restart
 service heat-api-cfn restart
@@ -41,7 +43,7 @@ sleep 4
 
 source demo_openrc.sh
 cat > ns-stack.yml <<EOF
-heat_template_version: 2014-10-06
+heat_template_version: 2013-05-23
 
 description: Test Template
 
@@ -72,4 +74,4 @@ EOF
 sleep 1
 
 NET_ID=$(nova net-list | awk '/ demo-net / { print $2 }')
-heat stack-create -f ns-stack.yml -P "ImageID=cirros-0.3.2-x86_64;NetID=$NET_ID" testStack
+heat stack-create -f ns-stack.yml -P "ImageID=Cirros 0.3.0;NetID=$NET_ID" testStack

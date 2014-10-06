@@ -13,25 +13,11 @@ hostname=$OS_HOST_NAME
 token=$OS_SERVICE_TOKEN
 
 apt-get install -y ceilometer-api ceilometer-collector ceilometer-agent-central ceilometer-agent-notification ceilometer-alarm-evaluator ceilometer-alarm-notifier ceilometer-agent-compute python-ceilometerclient
-apt-get install -y mongodb-server
 
-# patch mongo config
-sed -e "
-/^bind_ip =.*$/s/^.*$/bind_ip = $managementip/
-" -i /etc/mongodb.conf
-
-service mongodb restart
-sleep 5
-
-mongo --host $hostname --eval '
-db = db.getSiblingDB("ceilometer");
-db.addUser({user: "ceilometer",
-            pwd: "$password",
-            roles: [ "readWrite", "dbAdmin" ]})'
-            
             
 echo "   
 [DEFAULT]
+verbose=True
 
 auth_strategy=keystone
 
@@ -39,6 +25,7 @@ log_dir= /var/log/ceilometer
 
 rabbit_host= $hostname
 rabbit_password = $password
+
 
 [alarm]
 
@@ -52,7 +39,7 @@ rabbit_password = $password
 [database]
 
 
-connection= mongodb://ceilometer:$password@$hostname:27017/ceilometer
+connection= mysql://ceilometer:$password@$hostname/ceilometer
 
 
 [dispatcher_file]
@@ -110,6 +97,7 @@ os_password = $password
 
 " > /etc/ceilometer/ceilometer.conf
 
+ceiloneter-dbsync
 
 service ceilometer-agent-central restart
 service ceilometer-agent-notification restart

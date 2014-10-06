@@ -166,7 +166,7 @@ mysql_secure_installation
 
 
 mysql -u root -p <<EOF
-CREATE DATABASE nova;
+CREATE DATABASE nova;vi
 GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' IDENTIFIED BY '$service_pass';
 GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' IDENTIFIED BY '$service_pass';
 CREATE DATABASE glance;
@@ -184,4 +184,8 @@ GRANT ALL PRIVILEGES ON cinder.* TO 'cinder'@'localhost' IDENTIFIED BY '$service
 CREATE DATABASE heat;
 GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'localhost' IDENTIFIED BY '$service_pass';
 GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'%' IDENTIFIED BY '$service_pass';
+CREATE DATABASE ceilometer;
+GRANT ALL PRIVILEGES ON ceilometer.* TO 'ceilometer'@'localhost' IDENTIFIED BY '$service_pass';
+GRANT ALL PRIVILEGES ON ceilometer.* TO 'ceilometer'@'%' IDENTIFIED BY '$service_pass';
 EOF
+
